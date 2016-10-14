@@ -18,7 +18,11 @@ enable :sessions
 
   post '/names' do
    player_1 = Player.new(params[:player_1_name])
-   player_2 = Player.new(params[:player_2_name])
+   if params[:Computer]
+     player_2 = Player.new('Computer')
+   else
+     player_2 = Player.new(params[:player_2_name])
+   end
    @game = Game.create(player_1, player_2)
    redirect '/play'
   end
@@ -33,26 +37,37 @@ enable :sessions
     if @game.game_over?
       redirect '/game-over'
     else
-      redirect '/attack'
+      redirect '/attack_summary'
     end
   end
 
   get '/attack' do
-    erb :attack
+    Attack.run(@game.current_opponent)
+    if @game.game_over?
+      redirect '/game-over'
+    else
+      redirect '/attack_summary'
+    end
   end
 
-  post '/switch-turns' do
+  get '/attack_summary' do
+    erb :attack_summary
+  end
+
+  post '/switch_turns' do
     @game.switch_turns
-    redirect('/play')
+    if @game.computer?
+      redirect '/attack'
+    else
+      redirect('/play')
+    end
   end
 
-  get '/game-over' do
+
+  get '/game_over' do
     erb :game_over
   end
 
-  post '/names-practice' do
-    # Add erb here
-  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0

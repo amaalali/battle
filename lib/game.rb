@@ -33,6 +33,10 @@ attr_reader :current_turn
     opponent_of(@current_turn)
   end
 
+  def computer?
+    player_2.name == "Computer"
+  end
+
   def game_over?
     losing_players.any?
   end
