@@ -10,8 +10,11 @@ attr_reader :name, :hit_points
   end
 
  def receive_damage
-  @hit_points -= 10
+  @hit_points -= random_damage_amount
  end
 
+ def random_damage_amount
+   Kernel.rand(10)
+ end
 
 end

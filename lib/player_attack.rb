@@ -5,9 +5,9 @@ class Attack
 
   def self.run(player)
    new(player).run
-   end
+  end
 
   def run
    @player.receive_damage
   end
-end 
+end
