@@ -9,3 +9,9 @@ def attack_and_confirm
   click_button 'Attack'
   click_button 'OK'
 end
+
+def sign_in_and_practise
+  visit('/')
+  fill_in :player_1_name, with: 'Dave'
+  click_button 'Practise against computer'
+end

@@ -50,6 +50,10 @@ enable :sessions
     erb :game_over
   end
 
+  post '/names-practice' do
+    # Add erb here
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
