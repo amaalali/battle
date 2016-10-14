@@ -34,7 +34,7 @@ attr_reader :current_turn
   end
 
   def computer?
-    player_2.name == "Computer"
+    @current_turn.name == "Computer"
   end
 
   def game_over?

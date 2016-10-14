@@ -35,7 +35,7 @@ enable :sessions
   post '/attack' do
     Attack.run(@game.current_opponent)
     if @game.game_over?
-      redirect '/game-over'
+      redirect '/game_over'
     else
       redirect '/attack_summary'
     end
@@ -44,7 +44,7 @@ enable :sessions
   get '/attack' do
     Attack.run(@game.current_opponent)
     if @game.game_over?
-      redirect '/game-over'
+      redirect '/game_over'
     else
       redirect '/attack_summary'
     end
